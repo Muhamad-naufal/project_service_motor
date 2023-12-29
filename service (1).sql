@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Des 2023 pada 13.13
+-- Waktu pembuatan: 29 Des 2023 pada 11.40
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -62,7 +62,11 @@ CREATE TABLE `booking` (
 INSERT INTO `booking` (`id_booking`, `id_user`, `kode_book`, `tanggal`, `tanggal_book`, `jam`, `plat_no`, `nama_motor`, `tahun_kendaraan`, `id_paket_service`, `id_turun_mesin`, `keluhan`, `id_status`) VALUES
 (62, 13, 'A3', '2023-12-22 04:06:57', '2023-12-23 00:00:00', '12:07:00', 'R 1234 R', 'Beat', '2020', 1, 2, 'Nggak Nyala', 1),
 (63, 14, 'A2', '2023-12-22 11:32:14', '2023-12-28 00:00:00', '00:00:00', 'ASDASD', 'SDASDS', '0000', 1, 2, 'ADASDASD', 1),
-(64, 14, 'A3', '2023-12-22 11:35:04', '2023-12-23 00:00:00', '00:00:00', 'R 1234 BR', 'Vario ', '2010', 2, 2, 'Nggak Nyala', 4);
+(64, 14, 'A3', '2023-12-22 11:35:04', '2023-12-23 00:00:00', '00:00:00', 'R 1234 BR', 'Vario ', '2010', 2, 2, 'Nggak Nyala', 4),
+(65, 14, 'A2', '2023-12-29 10:01:23', '2023-12-29 00:00:00', '22:06:00', 'hfhg', 'hfhf', '0000', 1, 1, 'asdasdas', 4),
+(66, 14, 'A3', '2023-12-29 10:19:00', '2023-12-29 00:00:00', '21:03:00', 'aSdasd', 'asdsdas', '0000', 1, 1, 'asasaddasdd', 4),
+(67, 14, 'A4', '2023-12-29 10:35:38', '2023-12-29 00:00:00', '21:03:00', 'kJShdj', 'jasgdjs', '0000', 1, 1, 'asdasdasasd', 4),
+(68, 14, 'A5', '2023-12-29 10:36:09', '2023-12-29 00:00:00', '22:22:00', 'asdasdsa', 'asdsa', '0000', 2, 2, 'sdasdsadasdsasasdas', 4);
 
 -- --------------------------------------------------------
 
@@ -239,7 +243,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT untuk tabel `nota`

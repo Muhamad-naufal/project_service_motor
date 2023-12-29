@@ -25,6 +25,18 @@ function generateQueueNumber($connect)
     return $currentQueueLetter . $currentQueueNumber;
 }
 
+// Validate if the selected date is full
+$tanggal = $_POST["tanggal"];
+$countQuery = mysqli_query($connect, "SELECT COUNT(*) as total FROM booking WHERE tanggal_book = '$tanggal'");
+$countResult = mysqli_fetch_assoc($countQuery);
+$jumlah = $countResult['total'];
+
+if ($jumlah >= 20) {
+    // The selected date is full, handle accordingly (redirect with a status parameter)
+    header("Location: booking.php?status=full");
+    exit(); // Stop further execution
+}
+
 $user_name = $_POST["username"];
 $phone = $_POST["phone"];
 $alamat = $_POST["alamat"];
@@ -35,7 +47,6 @@ $paket = $_POST["paket"];
 $turun = $_POST["turun"];
 $keluhan = $_POST["keluhan"];
 $status = $_POST["status"];
-$tanggal = $_POST["tanggal"];
 $jam = date("H:i:s", strtotime($_POST["jam"]));
 $username = $_SESSION['username_user'];
 
@@ -49,10 +60,12 @@ $result = mysqli_query($connect, "INSERT INTO `booking` (`id_booking`, `id_user`
 VALUES ('', '$id_user', '$queueNumber', '$tanggal', '$jam','$platnomor', '$namamotor', '$tahun', '$paket', '$turun', '$keluhan', '$status');");
 
 if ($result) {
-    // If the data insertion is successful, redirect to home.php with kode_book parameter
-    header("Location: booking.php?kode_book=$queueNumber");
+    // Booking is successful, redirect with a success status parameter
+    header("Location: booking.php?status=success&kode_book=$queueNumber");
+    exit(); // Stop further execution
 } else {
     // Handle errors if needed
     echo "Error: " . mysqli_error($connect);
 }
+
 mysqli_close($connect);

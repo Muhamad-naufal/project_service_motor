@@ -1,6 +1,9 @@
 <?php
 session_start();
 include('components/config/conn.php');
+$query = mysqli_query($connect, "SELECT * FROM booking where tanggal_book = CURDATE()");
+$jumlah = mysqli_num_rows($query);
+$data = mysqli_fetch_array($query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +28,17 @@ include('components/config/conn.php');
 </head>
 
 <body>
+    <?php
+    // Check the status parameter in the URL
+    $status = isset($_GET['status']) ? $_GET['status'] : '';
+
+    if ($status == 'full') {
+        echo "<script>alert('Maaf, tanggal yang anda pilih sudah penuh. Silahkan pilih tanggal lain.')</script>";
+    } elseif ($status == 'success') {
+        $kode_book = isset($_GET['kode_book']) ? $_GET['kode_book'] : '';
+        echo "<script>alert('Booking berhasil! Kode Booking: $kode_book')</script>";
+    }
+    ?>
     <div id="booking" class="section">
         <div class="section-center">
             <div class="container">
@@ -159,8 +173,6 @@ include('components/config/conn.php');
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="form-btn">
                                 <button class="submit-btn">Book Now</button>
                             </div>
