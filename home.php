@@ -1,5 +1,9 @@
 <?php
 session_start();
+include "components/config/conn.php";
+$query = mysqli_query($connect, "SELECT * FROM booking where tanggal_book = CURDATE()");
+$jumlah = mysqli_num_rows($query);
+$data = mysqli_fetch_array($query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +71,7 @@ session_start();
       </div>
       <ul class="nav__links" id="nav-links">
         <li><a href="#home">HOME</a></li>
-        <li><a href="booking.php">BOOKING</a></li>
+        <li><a href="booking.php" <?php echo ($jumlah >= 20) ? 'disabled' : ''; ?>>BOOKING</a></li>
         <li><a href="histori.php">HISTORY</a></li>
         <li>
           <div class="dropdown">
@@ -94,7 +98,14 @@ session_start();
   </header>
   <section class="banner__container">
     <div class="banner__card">
-      <h4>Layanan Konsultasi Teknis</h4>
+      <h4>Layanan Service Untuk</h4>
+      <?php
+      if ($jumlah < 20) {
+        echo "<h4 class='text-light'>Hari ini: " . $jumlah . " sedang dalam pelayanan.</h4>";
+      } else if ($jumlah >= 20) {
+        echo "<h4 class='text-light'>Hari ini: PENUH</h4>";
+      }
+      ?>
     </div>
     <div class="banner__card">
       <h4>Layanan Pemesanan Online</h4>
